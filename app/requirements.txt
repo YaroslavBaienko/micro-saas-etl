@@ -1,0 +1,7 @@
+# app/requirements.txt
+fastapi
+uvicorn[standard]
+pandas
+SQLAlchemy
+pymysql
+python-multipart

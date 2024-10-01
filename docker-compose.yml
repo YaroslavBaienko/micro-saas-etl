@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: ./app
+    container_name: etl_app
+    environment:
+      - MYSQL_USER=etl_user
+      - MYSQL_PASSWORD=etl_password
+      - MYSQL_DATABASE=etl_database
+      - MYSQL_HOST=db
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+
+  go_service:
+    build:
+      context: ./go_service
+    container_name: etl_go_service
+    ports:
+      - "8080:8080"
+
+  db:
+    image: mysql:latest
+    container_name: etl_db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: etl_database
+      MYSQL_USER: etl_user
+      MYSQL_PASSWORD: etl_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
