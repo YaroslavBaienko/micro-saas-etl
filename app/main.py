@@ -3,7 +3,6 @@ from sqlalchemy import create_engine, text
 import pandas as pd
 import os
 import requests
-import json
 
 app = FastAPI()
 
@@ -48,7 +47,7 @@ async def upload_file(file: UploadFile = File(...)):
     
     return {"status": "success", "filename": file.filename}
 
-# Новый эндпоинт: Общее количество бронирований
+# Эндпоинт: Общее количество бронирований
 @app.get("/analytics/total_bookings")
 def get_total_bookings():
     try:
@@ -93,7 +92,8 @@ def get_top_countries():
                 ORDER BY total DESC
                 LIMIT 5
             """))
-            countries = [{"country": row['country'], "total_bookings": row['total']} for row in result]
+            keys = result.keys()
+            countries = [dict(zip(keys, row)) for row in result]
         return {"top_countries": countries}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error fetching data: {e}")
@@ -108,7 +108,8 @@ def get_average_adr_by_hotel():
                 FROM data_table
                 GROUP BY hotel
             """))
-            adr_by_hotel = [{"hotel": row['hotel'], "average_adr": row['average_adr']} for row in result]
+            keys = result.keys()
+            adr_by_hotel = [dict(zip(keys, row)) for row in result]
         return {"average_adr_by_hotel": adr_by_hotel}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error fetching data: {e}")
