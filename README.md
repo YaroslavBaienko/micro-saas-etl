@@ -45,7 +45,7 @@ Ensure you have the following installed:
 
 ## API Usage
 
-### Upload CSV for processing:
+### Upload CSV for processing using POST:
 
 - **Endpoint**: `/upload`
 - **Method**: POST
@@ -55,6 +55,54 @@ Ensure you have the following installed:
   ```bash
    curl -F 'file=@hotel_bookings.csv' http://localhost:8000/upload
   ```
+
+# API Endpoints using GET
+
+## 1. Total Number of Bookings
+
+- **URL**: `/analytics/total_bookings`
+- **Method**: `GET`
+- **Description**: Returns the total number of bookings in the database.
+
+---
+
+## 2. Number of Canceled Bookings
+
+- **URL**: `/analytics/canceled_bookings`
+- **Method**: `GET`
+- **Description**: Returns the number of bookings with a status of canceled.
+
+---
+
+## 3. Average Lead Time Before Booking
+
+- **URL**: `/analytics/average_lead_time`
+- **Method**: `GET`
+- **Description**: Returns the average time (in days) between booking and check-in.
+
+---
+
+## 4. Top 5 Countries by Number of Bookings
+
+- **URL**: `/analytics/top_countries`
+- **Method**: `GET`
+- **Description**: Returns a list of the top 5 countries with the highest number of bookings.
+
+---
+
+## 5. Average Booking Price by Hotel Type
+
+- **URL**: `/analytics/average_adr_by_hotel`
+- **Method**: `GET`
+- **Description**: Returns the average booking price (ADR) for each hotel type.
+
+---
+
+## 6. Cancellation Rate
+
+- **URL**: `/analytics/cancellation_rate`
+- **Method**: `GET`
+- **Description**: Returns the percentage of canceled bookings out of the total number.
 
 ### Process Data with Go:
 
