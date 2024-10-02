@@ -33,7 +33,7 @@ Ensure you have the following installed:
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/yourusername/micro-saas-etl.git
+   git clone https://github.com/YaroslavBaienko/micro-saas-etl.git
    cd micro-saas-etl
    ```
 
