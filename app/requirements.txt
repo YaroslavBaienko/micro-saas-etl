@@ -5,3 +5,5 @@ pandas
 SQLAlchemy
 pymysql
 python-multipart
+cryptography
+requests
